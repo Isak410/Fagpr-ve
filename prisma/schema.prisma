@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role     @default(EMPLOYEE)
+  createdAt DateTime @default(now())
+
+  bookings  Booking[]
+}
+
+model Car {
+  id          Int      @id @default(autoincrement())
+  brand       String
+  modelName       String
+  plateNo       String   @unique
+  status      CarStatus @default(AVAILABLE)
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+
+  bookings    Booking[]
+  requests    Request[]
+}
+
+model Booking {
+  id            Int      @id @default(autoincrement())
+  carId         Int
+  userId        Int?     // ansatt som opprettet
+  customerName  String
+  startDate     DateTime
+  endDate       DateTime
+  createdAt     DateTime @default(now())
+
+  car           Car      @relation(fields: [carId], references: [id])
+  user          User?    @relation(fields: [userId], references: [id])
+}
+
+model Request {
+  id            Int            @id @default(autoincrement())
+  customerName  String
+  carId         Int
+  startDate     DateTime
+  endDate       DateTime
+  status        RequestStatus  @default(PENDING)
+  createdAt     DateTime       @default(now())
+
+  car           Car            @relation(fields: [carId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+}
+
+enum CarStatus {
+  AVAILABLE
+  RENTED
+  SERVICE
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
