@@ -20,6 +20,18 @@ model User {
   createdAt DateTime @default(now())
 
   bookings  Booking[]
+
+  sessions session[] @relation(map: "Session_userId_fkey")
+}
+
+model session {
+  id           String   @id @default(uuid()) @db.Uuid
+  sessionToken String   @unique(map: "Session_sessionToken_key")
+  userId       Int
+  expires      DateTime
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade, map: "Session_userId_fk")
+
+  @@index([userId], map: "Session_userId_idx")
 }
 
 model Car {
