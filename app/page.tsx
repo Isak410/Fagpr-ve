@@ -6,7 +6,7 @@ export default function Home() {
     console.log(session);
     return (
         <div>
-            <p>Fagprøve</p>
+            {/* <p>Fagprøve</p>
             <button
                 className="bg-blue-500 text-white text-2xl rounded p-1 border-2 border-gray-200"
                 onClick={() => {
@@ -14,7 +14,7 @@ export default function Home() {
                 }}
             >
                 Sign in
-            </button>
+            </button> */}
         </div>
     );
 }

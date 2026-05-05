@@ -1,5 +1,23 @@
 @import 'tailwindcss';
 
+@theme {
+    --color-mainbg: #0b0e14;
+    --color-fromsidebarbg: #0f172a;
+    --color-tosidebarbg: #1e293b;
+    --color-sidebarbuttonnotselectedbg: #334155;
+    --color-sidebarbuttonbg: #1d4ed8;
+    --color-sidebarbuttonhoverbg: #3b82f6;
+    --color-contentcontainer: #111827;
+    --color-secondarycontentcontainer: #1e1e2f;
+    --color-contentcontainerhover: #6495ed;
+    --color-mainbuttonbg: #3b82f6;
+    --color-mainbuttonhoverbg: #60a5fa;
+    --color-secondarybuttonbg: #6495ed;
+    --color-secondarybuttonhoverbg: #93c5fd;
+    --color-dangerbuttonbg: #dc2626;
+    --color-dangerbuttonhoverbg: #f87171;
+}
+
 :root {
     --background: #ffffff;
     --foreground: #171717;
