@@ -6,10 +6,12 @@ export default async function Layout({
     children,
     employee,
     customer,
+    modal,
 }: {
     children: React.ReactNode;
     employee: React.ReactNode;
     customer: React.ReactNode;
+    modal: React.ReactNode;
 }) {
     const session = await getServerSession(authOptions);
     const user = await prisma.user.findUnique({
@@ -20,6 +22,7 @@ export default async function Layout({
     return (
         <>
             {children}
+            {modal}
             {user?.role === 'EMPLOYEE' ? employee : customer}
         </>
     );
