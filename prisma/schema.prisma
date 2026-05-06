@@ -39,7 +39,7 @@ model Car {
   brand       String
   modelName       String
   plateNo       String   @unique
-  status      CarStatus @default(AVAILABLE)
+  // status      CarStatus @default(AVAILABLE)
   imageUrl    String?
   createdAt   DateTime @default(now())
 
@@ -76,12 +76,6 @@ enum Role {
   ADMIN
   EMPLOYEE
   CUSTOMER
-}
-
-enum CarStatus {
-  AVAILABLE
-  RENTED
-  SERVICE
 }
 
 enum RequestStatus {

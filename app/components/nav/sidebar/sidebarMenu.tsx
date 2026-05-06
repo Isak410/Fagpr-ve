@@ -18,6 +18,12 @@ export default function SidebarMenu({ expanded }: { expanded: boolean }) {
                     href="/home"
                     expanded={expanded}
                 />
+                <LinkButton
+                    text="Cars"
+                    Icon={House}
+                    href="/cars"
+                    expanded={expanded}
+                />
             </>
         </div>
     );
