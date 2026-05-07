@@ -7,6 +7,7 @@ import { Factory } from 'lucide-react';
 import { Upload } from 'lucide-react';
 import { Rows3 } from 'lucide-react';
 import LinkButton from './buttons/linkButton';
+import { Car } from 'lucide-react';
 
 export default function SidebarMenu({ expanded }: { expanded: boolean }) {
     return (
@@ -20,7 +21,7 @@ export default function SidebarMenu({ expanded }: { expanded: boolean }) {
                 />
                 <LinkButton
                     text="Cars"
-                    Icon={House}
+                    Icon={Car}
                     href="/cars"
                     expanded={expanded}
                 />

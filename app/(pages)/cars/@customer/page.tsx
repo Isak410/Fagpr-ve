@@ -24,24 +24,23 @@ export default async function DashboardCustomer() {
                             : 'https://via.placeholder.com/300';
 
                         return (
-                            <div
-                                key={car.id}
-                                className="bg-white rounded-xl shadow p-4"
-                            >
-                                <img
-                                    src={imageUrl}
-                                    alt={`${car.brand} ${car.modelName}`}
-                                    className="w-full h-40 object-cover rounded-lg mb-4"
-                                />
+                            <Link key={car.id} href={`/cars/${car.id}`}>
+                                <div className="bg-white rounded-xl shadow p-4 hover:scale-101 hover:bg-slate-100 transition-all duration-200">
+                                    <img
+                                        src={imageUrl}
+                                        alt={`${car.brand} ${car.modelName}`}
+                                        className="w-full h-40 object-cover rounded-lg mb-4"
+                                    />
 
-                                <h2 className="font-semibold text-lg">
-                                    {car.brand} {car.modelName}
-                                </h2>
+                                    <h2 className="font-semibold text-lg">
+                                        {car.brand} {car.modelName}
+                                    </h2>
 
-                                <p className="text-sm text-gray-500">
-                                    {car.plateNo}
-                                </p>
-                            </div>
+                                    <p className="text-sm text-gray-500">
+                                        {car.plateNo}
+                                    </p>
+                                </div>
+                            </Link>
                         );
                     })}
                 </div>

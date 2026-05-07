@@ -34,39 +34,38 @@ export default async function DashboardEmployee() {
                         const bookedToday = car.bookings.some((booking) =>
                             isDateBetweenBooking(
                                 booking.startDate,
-                                booking.endDate
-                            )
+                                booking.endDate,
+                            ),
                         );
                         return (
-                            <div
-                                key={car.id}
-                                className="bg-white rounded-xl shadow p-4"
-                            >
-                                <img
-                                    src={imageUrl}
-                                    alt={`${car.brand} ${car.modelName}`}
-                                    className="w-full h-60 object-cover rounded-lg mb-4"
-                                />
+                            <Link key={car.id} href={`/cars/${car.id}`}>
+                                <div className="bg-white rounded-xl shadow p-4 hover:scale-101 hover:bg-slate-100 transition-all duration-200">
+                                    <img
+                                        src={imageUrl}
+                                        alt={`${car.brand} ${car.modelName}`}
+                                        className="w-full h-60 object-cover rounded-lg mb-4"
+                                    />
 
-                                <h2 className="font-semibold text-lg">
-                                    {car.brand} {car.modelName}
-                                </h2>
+                                    <h2 className="font-semibold text-lg">
+                                        {car.brand} {car.modelName}
+                                    </h2>
 
-                                <p className="text-sm text-gray-500">
-                                    {car.plateNo}
-                                </p>
-                                <div className="mt-3">
-                                    {bookedToday ? (
-                                        <span className="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full">
-                                            Booked
-                                        </span>
-                                    ) : (
-                                        <span className="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">
-                                            Available
-                                        </span>
-                                    )}
+                                    <p className="text-sm text-gray-500">
+                                        {car.plateNo}
+                                    </p>
+                                    <div className="mt-3">
+                                        {bookedToday ? (
+                                            <span className="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full">
+                                                Booked
+                                            </span>
+                                        ) : (
+                                            <span className="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">
+                                                Available
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>

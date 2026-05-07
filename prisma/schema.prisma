@@ -64,6 +64,7 @@ model Booking {
   customerName  String
   startDate     DateTime
   endDate       DateTime
+  pickupTime    String
   createdAt     DateTime @default(now())
 
   car           Car      @relation(fields: [carId], references: [id])
