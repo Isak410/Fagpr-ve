@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@heroui/styles';
 
 @theme {
     --color-mainbg: #0b0e14;

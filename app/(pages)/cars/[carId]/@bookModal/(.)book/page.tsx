@@ -20,5 +20,5 @@ export default async function Page({
 
     if (!car) return null;
 
-    return <BookModal carId={car.id} bookings={car.bookings} />;
+    return <BookModal carId={parseInt(carId)} bookings={car.bookings} />;
 }
