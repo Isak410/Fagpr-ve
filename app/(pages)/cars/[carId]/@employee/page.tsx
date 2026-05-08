@@ -77,7 +77,7 @@ export default async function Page({
                     {/* CTA */}
                     <div className="mt-8 w-full flex flex-row justify-between">
                         <Link
-                            href={`/cars/${carId}`}
+                            href={`/cars/${carId}/book`}
                             className="bg-blue-500 hover:bg-blue-600 transition-colors duration-200 text-white px-4 py-2 rounded-lg shadow"
                         >
                             View bookings

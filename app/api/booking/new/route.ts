@@ -1,4 +1,6 @@
 import prisma from '@/app/lib/prisma';
+import { authOptions } from '@/app/utils/authOptions';
+import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -12,7 +14,7 @@ const bookingSchema = z.object({
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-
+        const session = await getServerSession(authOptions);
         const validation = bookingSchema.safeParse(body);
 
         if (!validation.success) {
@@ -22,7 +24,24 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
+                }
+            );
+        }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: parseInt(session.user.id),
+            },
+        });
+
+        if (!user) {
+            return NextResponse.json(
+                {
+                    error: 'No user found',
                 },
+                {
+                    status: 400,
+                }
             );
         }
 
@@ -39,7 +58,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
-                },
+                }
             );
         }
 
@@ -57,7 +76,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 404,
-                },
+                }
             );
         }
 
@@ -89,7 +108,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 409,
-                },
+                }
             );
         }
 
@@ -97,7 +116,8 @@ export async function POST(req: Request) {
         const booking = await prisma.booking.create({
             data: {
                 carId,
-                customerName: 'Temporary Customer',
+                userId: user.id,
+                customerName: user.name,
                 startDate: start,
                 endDate: end,
                 pickupTime,
@@ -117,7 +137,7 @@ export async function POST(req: Request) {
             },
             {
                 status: 500,
-            },
+            }
         );
     }
 }

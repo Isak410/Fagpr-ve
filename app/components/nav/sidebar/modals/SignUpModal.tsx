@@ -11,7 +11,7 @@ export default function SignUpModal({
     toggleModals,
 }: ModalTypes) {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -40,7 +40,7 @@ export default function SignUpModal({
         try {
             const hashedPassword = await encryptString(formData.password);
             const payload = {
-                username: formData.username,
+                name: formData.name,
                 email: formData.email,
                 password: hashedPassword,
             };
@@ -60,7 +60,11 @@ export default function SignUpModal({
                 setError(response.data.message);
             }
         } catch (err) {
-            setError(err as typeof error);
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || 'Something went wrong');
+            } else {
+                setError('Something went wrong');
+            }
         }
     };
 
@@ -93,9 +97,9 @@ export default function SignUpModal({
                     <input
                         className="p-3 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                         type="text"
-                        name="username"
-                        placeholder="Username"
-                        value={formData.username}
+                        name="name"
+                        placeholder="name"
+                        value={formData.name}
                         onChange={handleChange}
                         required
                     />
