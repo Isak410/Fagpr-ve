@@ -1,7 +1,7 @@
 import { isDateBetweenBooking } from '@/app/lib/isDateBetweenBooking';
 import prisma from '@/app/lib/prisma';
 import Link from 'next/link';
-
+export const dynamic = 'force-dynamic';
 export default async function DashboardEmployee() {
     const cars = await prisma.car.findMany({
         include: {
@@ -34,8 +34,8 @@ export default async function DashboardEmployee() {
                         const bookedToday = car.bookings.some((booking) =>
                             isDateBetweenBooking(
                                 booking.startDate,
-                                booking.endDate,
-                            ),
+                                booking.endDate
+                            )
                         );
                         return (
                             <Link key={car.id} href={`/cars/${car.id}`}>

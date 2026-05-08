@@ -1,6 +1,5 @@
 import prisma from '@/app/lib/prisma';
-import fs from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 
@@ -10,6 +9,7 @@ export async function POST(req: Request) {
 
         const brand = formData.get('brand') as string;
         const modelName = formData.get('modelName') as string;
+
         const plateNo = formData.get('plateNo') as string;
 
         const images = formData.getAll('images') as File[];
@@ -19,29 +19,18 @@ export async function POST(req: Request) {
             fileName: string;
         }[] = [];
 
-        // Upload directory
-        const uploadDir = path.join(process.cwd(), 'public/uploads');
-
-        // Ensure folder exists
-        await fs.mkdir(uploadDir, { recursive: true });
-
-        // Save files
+        // Upload images to Vercel Blob
         for (const image of images) {
             if (!image || image.size === 0) continue;
 
-            const bytes = await image.arrayBuffer();
-            const buffer = Buffer.from(bytes);
-
-            // Generate unique filename
             const uniqueFileName = `${randomUUID()}-${image.name}`;
 
-            const filePath = path.join(uploadDir, uniqueFileName);
-
-            // Save file
-            await fs.writeFile(filePath, buffer);
+            const blob = await put(uniqueFileName, image, {
+                access: 'public',
+            });
 
             uploadedImages.push({
-                url: `/uploads/${uniqueFileName}`,
+                url: blob.url,
                 fileName: image.name,
             });
         }
@@ -70,7 +59,9 @@ export async function POST(req: Request) {
                 success: false,
                 error: 'Failed to create car',
             },
-            { status: 500 }
+            {
+                status: 500,
+            }
         );
     }
 }

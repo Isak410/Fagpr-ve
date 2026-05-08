@@ -1,3 +1,5 @@
-export default async function CarsPage() {
+'use client';
+
+export default function Page() {
     return <p></p>;
 }
