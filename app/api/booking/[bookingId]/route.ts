@@ -7,7 +7,7 @@ export async function DELETE(
         params,
     }: {
         params: Promise<{ bookingId: string }>;
-    }
+    },
 ) {
     try {
         const { bookingId } = await params;
@@ -30,7 +30,7 @@ export async function DELETE(
             },
             {
                 status: 500,
-            }
+            },
         );
     }
 }

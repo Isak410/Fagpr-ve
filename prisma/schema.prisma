@@ -45,7 +45,6 @@ model Car {
   createdAt   DateTime @default(now())
 
   bookings    Booking[]
-  requests    Request[]
 }
 
 model CarImage {
@@ -70,18 +69,6 @@ model Booking {
 
   car           Car      @relation(fields: [carId], references: [id])
   user          User?    @relation(fields: [userId], references: [id])
-}
-
-model Request {
-  id            Int            @id @default(autoincrement())
-  customerName  String
-  carId         Int
-  startDate     DateTime
-  endDate       DateTime
-  status        RequestStatus  @default(PENDING)
-  createdAt     DateTime       @default(now())
-
-  car           Car            @relation(fields: [carId], references: [id])
 }
 
 enum Role {

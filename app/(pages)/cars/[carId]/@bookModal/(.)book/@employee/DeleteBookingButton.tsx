@@ -16,7 +16,7 @@ export default function DeleteBookingButton({
         try {
             setLoading(true);
 
-            const response = await fetch(`/api/booking/delete/${bookingId}`, {
+            const response = await fetch(`/api/booking/${bookingId}`, {
                 method: 'DELETE',
             });
 

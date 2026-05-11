@@ -69,7 +69,7 @@ export default function BookModal({
 
             setLoading(true);
 
-            const response = await fetch('/api/booking/new', {
+            const response = await fetch('/api/booking', {
                 method: 'POST',
 
                 headers: {
