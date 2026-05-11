@@ -2,6 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import CarImageGallery from '../components/CarImages';
 import prisma from '@/app/lib/prisma';
+import { isDateBetweenBooking } from '@/app/lib/isDateBetweenBooking';
 
 export default async function Page({
     params,
@@ -23,6 +24,10 @@ export default async function Page({
     if (!carData) {
         return <div className="p-10 text-center">Car not found</div>;
     }
+
+    const bookedToday = carData.bookings.some((booking) =>
+        isDateBetweenBooking(booking.startDate, booking.endDate)
+    );
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -48,9 +53,15 @@ export default async function Page({
                             </p>
                         </div>
 
-                        <div className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium">
-                            Available
-                        </div>
+                        {bookedToday ? (
+                            <div className="bg-red-200 text-red-500 px-4 py-2 rounded-full text-sm font-medium">
+                                Not available
+                            </div>
+                        ) : (
+                            <div className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium">
+                                Available
+                            </div>
+                        )}
                     </div>
 
                     {/* Description-ish section */}

@@ -129,7 +129,20 @@ export default function BookModal({
                             aria-label="Booking dates"
                             minValue={today(getLocalTimeZone())}
                             value={value}
-                            onChange={setValue}
+                            onChange={(newValue) => {
+                                if (
+                                    newValue &&
+                                    newValue.start.compare(newValue.end) === 0
+                                ) {
+                                    setError(
+                                        'Please select at least 2 different dates'
+                                    );
+                                    return;
+                                }
+
+                                setError('');
+                                setValue(newValue);
+                            }}
                             isDateUnavailable={isDateUnavailable}
                             firstDayOfWeek="mon"
                             className={'w-full'}
