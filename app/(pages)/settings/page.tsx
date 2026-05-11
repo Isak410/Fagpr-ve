@@ -7,15 +7,21 @@ import { redirect, useRouter } from 'next/navigation';
 export default function SettingsPage() {
     const router = useRouter();
     return (
-        <div className="w-full h-full flex flex-col-reverse p-2">
+        <div className="flex items-center align-middle justify-center">
             <button
                 onClick={() => {
                     signOut();
                     router.push('/home');
                 }}
-                className="bg-red-300 hover:bg-red-400 transition-all duration-200 flex flex-row text-xl rounded p-3 border border-gray-400 w-fit"
+                className="absolute text-white font-bold bottom-8 right-2 bg-red-600 hover:bg-red-700 transition-all duration-200 flex items-center flex-row text-lg rounded-lg p-3 border border-black w-fit"
             >
-                Sign Out <LogOut className="ml-2" size={20} height={'fit'} />
+                Sign Out{' '}
+                <LogOut
+                    strokeWidth={3.5}
+                    className="ml-2"
+                    size={20}
+                    height={'fit'}
+                />
             </button>
         </div>
     );

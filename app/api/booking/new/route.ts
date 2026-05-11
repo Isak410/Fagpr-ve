@@ -24,7 +24,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
-                }
+                },
             );
         }
 
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
-                }
+                },
             );
         }
 
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
-                }
+                },
             );
         }
 
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 404,
-                }
+                },
             );
         }
 
@@ -108,7 +108,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 409,
-                }
+                },
             );
         }
 
@@ -120,7 +120,7 @@ export async function POST(req: Request) {
                 customerName: user.name,
                 startDate: start,
                 endDate: end,
-                pickupTime,
+                pickupTime: pickupTime,
             },
         });
 
@@ -137,7 +137,7 @@ export async function POST(req: Request) {
             },
             {
                 status: 500,
-            }
+            },
         );
     }
 }

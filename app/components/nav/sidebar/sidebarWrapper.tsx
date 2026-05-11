@@ -60,7 +60,10 @@ export default function SidebarWrapper({
                       </button> */}
 
                     {/* Menu */}
-                    {isSignedIn && <SidebarMenu expanded={isExpanded} />}
+                    <SidebarMenu
+                        isSignedIn={isSignedIn}
+                        expanded={isExpanded}
+                    />
                 </div>
 
                 {/* Bottom */}
