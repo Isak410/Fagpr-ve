@@ -10,6 +10,7 @@ export default async function Layout({
     customer,
     params,
     bookModal,
+    children,
 }: {
     children: React.ReactNode;
     employee: React.ReactNode;
@@ -28,6 +29,7 @@ export default async function Layout({
     return (
         <>
             {bookModal}
+            {children}
             <>{user?.role === 'EMPLOYEE' ? employee : customer}</>
         </>
     );

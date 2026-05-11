@@ -20,10 +20,10 @@ export default async function Layout({
     });
 
     return (
-        <>
+        <div className="bg-gray-100 w-full h-full flex items-center justify-center">
             {user?.role === 'EMPLOYEE' ? employee : customer}
 
             {children}
-        </>
+        </div>
     );
 }
