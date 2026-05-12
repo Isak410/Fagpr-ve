@@ -12,13 +12,9 @@ export default async function HomePage() {
                 <div className="bg-white rounded-3xl shadow-xl p-10">
                     <div className="mb-12 text-center">
                         <h1 className="text-5xl font-bold mb-4">
-                            Vehicle Rental System
+                            Nordbil AS - Bilutleie
                         </h1>
 
-                        <p className="text-gray-600 text-lg">
-                            Browse vehicles and book directly online through a
-                            simple and modern booking platform.
-                        </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
