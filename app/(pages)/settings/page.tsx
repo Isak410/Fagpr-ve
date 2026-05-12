@@ -11,7 +11,7 @@ export default function SettingsPage() {
             <button
                 onClick={() => {
                     signOut();
-                    router.push('/home');
+                    router.replace('/home');
                 }}
                 className="absolute text-white font-bold bottom-8 right-2 bg-red-600 hover:bg-red-700 transition-all duration-200 flex items-center flex-row text-lg rounded-lg p-3 border border-black w-fit"
             >

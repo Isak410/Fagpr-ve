@@ -1,6 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { redirect, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
@@ -106,13 +107,9 @@ export default function AddCarModal() {
                 formData.append('images', file);
             });
 
-            await fetch('/api/cars', {
-                method: 'POST',
-                body: formData,
-            });
+            const res = await axios.post('/api/cars', formData);
 
-            router.refresh();
-            router.back();
+            window.location.href = `/cars/${res.data.carId}`;
         } catch (err) {
             console.error(err);
         } finally {
@@ -215,7 +212,7 @@ export default function AddCarModal() {
 
                                         <p className="text-xs text-gray-500">
                                             {(file.size / 1024 / 1024).toFixed(
-                                                2
+                                                2,
                                             )}{' '}
                                             MB
                                         </p>
@@ -226,7 +223,7 @@ export default function AddCarModal() {
                                     type="button"
                                     onClick={() => {
                                         setFiles(
-                                            files.filter((_, i) => i !== index)
+                                            files.filter((_, i) => i !== index),
                                         );
                                     }}
                                     className="text-red-500 hover:text-red-600"

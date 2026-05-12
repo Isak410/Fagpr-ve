@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 const userSchema = z.object({
-    name: z.string().min(3, 'Username must be at least 3 characters'),
+    name: z.string().min(2, 'Username must be at least 2 characters'),
 
     email: z.email('Invalid email'),
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 400,
-                }
+                },
             );
         }
 
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
                 },
                 {
                     status: 409,
-                }
+                },
             );
         }
 
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
             },
             {
                 status: 500,
-            }
+            },
         );
     }
 }

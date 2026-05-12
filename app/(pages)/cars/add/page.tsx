@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -108,13 +109,9 @@ export default function AddCarModal() {
                 formData.append('images', file);
             });
 
-            await fetch('/api/cars', {
-                method: 'POST',
-                body: formData,
-            });
+            const res = await axios.post('/api/cars', formData);
 
-            router.refresh();
-            router.back();
+            window.location.href = `/cars/${res.data.carId}`;
         } catch (err) {
             console.error(err);
         } finally {

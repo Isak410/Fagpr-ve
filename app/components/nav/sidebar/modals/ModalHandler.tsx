@@ -34,7 +34,6 @@ export default function ModalHandler({
                             onClick={() => redirect('/settings')}
                             className={getWrapperClasses(true, pathName)}
                         >
-                            {/* Username */}
                             <p
                                 className={`text-white font-bold text-lg transition-opacity duration-200 w-fit truncate overflow-hidden'}`}
                             >

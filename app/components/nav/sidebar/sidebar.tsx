@@ -10,7 +10,7 @@ export default async function SidebarPage() {
         <SidebarWrapper
             username={
                 session && session.user && session.user.email
-                    ? session.user.email
+                    ? session.user.name
                     : ''
             }
             isSignedIn={isSignedIn}

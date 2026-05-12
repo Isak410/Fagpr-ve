@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         }
 
         // Create car + images
-        await prisma.car.create({
+        const newCar = await prisma.car.create({
             data: {
                 brand,
                 modelName,
@@ -68,6 +68,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             success: true,
+            carId: newCar.id,
         });
     } catch (error) {
         console.error(error);
