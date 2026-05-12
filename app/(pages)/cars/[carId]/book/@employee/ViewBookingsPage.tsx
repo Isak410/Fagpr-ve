@@ -54,7 +54,6 @@ export default async function ViewBookingPage({
                                     key={booking.id}
                                     className="bg-gray-100 rounded-xl p-4 mb-3 shadow-sm"
                                 >
-                                    {/* Top row */}
                                     <div className="flex items-center justify-between gap-4">
                                         <div className="font-semibold text-base">
                                             {startDate} → {endDate}
@@ -65,7 +64,6 @@ export default async function ViewBookingPage({
                                         />
                                     </div>
 
-                                    {/* Customer */}
                                     <div className=" text-sm text-gray-600">
                                         {booking.customerName}
                                     </div>

@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
 const carSchema = z.object({
-    brand: z.string().min(1, 'Brand is required'),
-    modelName: z.string().min(1, 'Model is required'),
-    plateNo: z.string().min(1, 'Plate number is required'),
+    brand: z.string().min(2, 'Brand is required'),
+    modelName: z.string().min(2, 'Model is required'),
+    plateNo: z.string().min(7, 'Plate number is required'),
     imageUrl: z
         .string()
         .url('Must be a valid URL')
@@ -66,7 +66,6 @@ export default function AddCarModal() {
 
         setFiles((prev) => [...prev, ...validFiles]);
 
-        // IMPORTANT:
         e.target.value = '';
     };
 
@@ -130,7 +129,7 @@ export default function AddCarModal() {
             >
                 <h1 className="text-xl font-semibold mb-6">Add Car</h1>
 
-                {/* Brand */}
+                {/* Merke */}
                 <input
                     name="brand"
                     placeholder="Brand"
@@ -142,7 +141,7 @@ export default function AddCarModal() {
                     <p className="text-sm text-red-500 mb-2">{errors.brand}</p>
                 )}
 
-                {/* Model */}
+                {/* Modell */}
                 <input
                     name="modelName"
                     placeholder="Model"
@@ -156,7 +155,7 @@ export default function AddCarModal() {
                     </p>
                 )}
 
-                {/* Plate */}
+                {/* Regnr */}
                 <input
                     name="plateNo"
                     placeholder="Plate Number"
@@ -170,7 +169,7 @@ export default function AddCarModal() {
                     </p>
                 )}
 
-                {/* Image URL */}
+                {/* Bilde URL */}
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium">
                         Car Images
@@ -235,7 +234,6 @@ export default function AddCarModal() {
                     </div>
                 </div>
 
-                {/* Buttons */}
                 <div className="flex gap-3 mt-4">
                     <button
                         onClick={() => router.back()}

@@ -89,7 +89,7 @@ export async function POST(req: Request) {
             );
         }
 
-        // Overlapping booking check
+        // Check for overlapping bookings
         const overlappingBooking = await prisma.booking.findFirst({
             where: {
                 carId,

@@ -16,6 +16,7 @@ export async function POST(req: Request) {
 
         const data = body.params;
 
+        // Zod validation
         const validation = userSchema.safeParse(data);
 
         if (!validation.success) {

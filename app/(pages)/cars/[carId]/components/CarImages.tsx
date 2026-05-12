@@ -13,7 +13,6 @@ export default function CarImageGallery({ images }: { images: CarImage[] }) {
 
     return (
         <div className="bg-gray-200">
-            {/* Main image */}
             <div className="w-full h-125 bg-black flex items-center justify-center">
                 <img
                     src={selectedImage}
@@ -22,7 +21,6 @@ export default function CarImageGallery({ images }: { images: CarImage[] }) {
                 />
             </div>
 
-            {/* Thumbnails */}
             <div className="flex gap-3 p-4 overflow-x-auto bg-white">
                 {images.map((image) => (
                     <button

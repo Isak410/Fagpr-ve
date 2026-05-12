@@ -8,9 +8,9 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
 const carSchema = z.object({
-    brand: z.string().min(1, 'Brand is required'),
-    modelName: z.string().min(1, 'Model is required'),
-    plateNo: z.string().min(1, 'Plate number is required'),
+    brand: z.string().min(2, 'Brand is required'),
+    modelName: z.string().min(2, 'Model is required'),
+    plateNo: z.string().min(7, 'Plate number is required'),
     imageUrl: z
         .string()
         .url('Must be a valid URL')
@@ -20,7 +20,6 @@ const carSchema = z.object({
 
 export default function AddCarModal() {
     const router = useRouter();
-    const [isVisible, setIsVisible] = useState(false);
 
     const [form, setForm] = useState({
         brand: '',
@@ -31,10 +30,6 @@ export default function AddCarModal() {
 
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
 
     const [files, setFiles] = useState<File[]>([]);
     const [fileError, setFileError] = useState('');
@@ -68,7 +63,6 @@ export default function AddCarModal() {
 
         setFiles((prev) => [...prev, ...validFiles]);
 
-        // IMPORTANT:
         e.target.value = '';
     };
 

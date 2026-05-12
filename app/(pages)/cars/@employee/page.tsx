@@ -13,7 +13,6 @@ export default async function DashboardEmployee() {
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-2xl font-semibold">Cars</h1>
 
@@ -25,7 +24,6 @@ export default async function DashboardEmployee() {
                     </Link>
                 </div>
 
-                {/* Car list */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {cars.map((car) => {
                         const imageUrl = car.images[0]
@@ -34,8 +32,8 @@ export default async function DashboardEmployee() {
                         const bookedToday = car.bookings.some((booking) =>
                             isDateBetweenBooking(
                                 booking.startDate,
-                                booking.endDate
-                            )
+                                booking.endDate,
+                            ),
                         );
                         return (
                             <Link key={car.id} href={`/cars/${car.id}`}>

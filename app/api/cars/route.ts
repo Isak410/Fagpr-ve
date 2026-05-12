@@ -4,31 +4,76 @@ import { put } from '@vercel/blob';
 import { randomUUID } from 'crypto';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
+
+const carSchema = z.object({
+    brand: z.string().min(2, 'Brand must be at least 2 characters'),
+
+    modelName: z.string().min(2, 'Model name must be at least 2 characters'),
+
+    plateNo: z.string().min(7, 'Plate number must be at least 7 characters'),
+});
 
 export async function POST(req: Request) {
     try {
         const session = await getServerSession(authOptions);
-        const user = await prisma.user.findUnique({
-            where: {
-                id: parseInt(session.user.id),
-            },
-        });
-        if (!user || !session || user.role !== 'EMPLOYEE') {
+
+        if (!session) {
             return NextResponse.json(
                 {
                     success: false,
+                    message: 'Unauthorized',
                 },
                 {
                     status: 401,
                 },
             );
         }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: parseInt(session.user.id),
+            },
+        });
+
+        if (!user || user.role !== 'EMPLOYEE') {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: 'Unauthorized',
+                },
+                {
+                    status: 401,
+                },
+            );
+        }
+
         const formData = await req.formData();
 
         const brand = formData.get('brand') as string;
+
         const modelName = formData.get('modelName') as string;
 
         const plateNo = formData.get('plateNo') as string;
+
+        // Zod validation
+        const validation = carSchema.safeParse({
+            brand,
+            modelName,
+            plateNo,
+        });
+
+        if (!validation.success) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: validation.error.issues[0].message,
+                },
+                {
+                    status: 400,
+                },
+            );
+        }
 
         const images = formData.getAll('images') as File[];
 
@@ -56,9 +101,11 @@ export async function POST(req: Request) {
         // Create car + images
         const newCar = await prisma.car.create({
             data: {
-                brand,
-                modelName,
-                plateNo,
+                brand: validation.data.brand,
+
+                modelName: validation.data.modelName,
+
+                plateNo: validation.data.plateNo,
 
                 images: {
                     create: uploadedImages,

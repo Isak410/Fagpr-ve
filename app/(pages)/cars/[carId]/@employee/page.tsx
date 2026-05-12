@@ -25,7 +25,7 @@ export default async function Page({
         return <div className="p-10 text-center">Car not found</div>;
     }
     const bookedToday = carData.bookings.some((booking) =>
-        isDateBetweenBooking(booking.startDate, booking.endDate)
+        isDateBetweenBooking(booking.startDate, booking.endDate),
     );
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
@@ -36,10 +36,9 @@ export default async function Page({
                 >
                     <ArrowLeft />
                 </Link>
-                {/* Image gallery */}
+
                 <CarImageGallery images={carData.images} />
 
-                {/* Content */}
                 <div className="p-8">
                     <div className="flex items-start justify-between mb-6">
                         <div>
@@ -63,7 +62,6 @@ export default async function Page({
                         )}
                     </div>
 
-                    {/* Description-ish section */}
                     <div className="border-t pt-6">
                         <h2 className="text-xl font-semibold mb-3">
                             Information
@@ -84,7 +82,6 @@ export default async function Page({
                         </div>
                     </div>
 
-                    {/* CTA */}
                     <div className="mt-8 w-full flex flex-row justify-between">
                         <Link
                             href={`/cars/${carId}/book`}

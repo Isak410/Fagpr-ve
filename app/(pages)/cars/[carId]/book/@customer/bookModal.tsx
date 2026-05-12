@@ -120,7 +120,6 @@ export default function BookModal({
                 <h1 className="text-2xl font-semibold mb-6">Book Vehicle</h1>
             </div>
 
-            {/* Calendar */}
             <div className="mb-4 w-full flex">
                 <div className="w-1/2">
                     <RangeCalendar
@@ -156,7 +155,6 @@ export default function BookModal({
                     </RangeCalendar>
                 </div>
 
-                {/* Pickup time */}
                 <div className="flex w-1/2 flex-col">
                     <div className="mb-6 p-2 w-full bg-gray-100 rounded-xl">
                         <label className="block text-sm font-medium mb-0">
@@ -184,11 +182,8 @@ export default function BookModal({
                         </div>
                     )}
                 </div>
-
-                {/* Selected dates */}
             </div>
 
-            {/* Buttons */}
             {error && (
                 <div className="mb-4 bg-red-100 text-red-600 px-4 py-3 rounded-xl text-sm">
                     {error}

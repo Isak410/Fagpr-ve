@@ -27,7 +27,6 @@ export default async function EmployeeHome() {
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold">Employee Dashboard</h1>
 
@@ -36,7 +35,6 @@ export default async function EmployeeHome() {
                     </p>
                 </div>
 
-                {/* Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                     <div className="bg-white rounded-xl p-6 shadow">
                         <p className="text-gray-500 text-sm">Cars</p>
@@ -61,7 +59,6 @@ export default async function EmployeeHome() {
                     </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex flex-wrap gap-4 mb-8">
                     <Link
                         href="/cars"
@@ -78,7 +75,6 @@ export default async function EmployeeHome() {
                     </Link>
                 </div>
 
-                {/* Upcoming bookings */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <h2 className="text-xl font-semibold mb-4">
                         Upcoming Bookings

@@ -11,12 +11,10 @@ export default async function DashboardCustomer() {
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-2xl font-semibold">Cars</h1>
                 </div>
 
-                {/* Car list */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {cars.map((car) => {
                         const imageUrl = car.images[0]

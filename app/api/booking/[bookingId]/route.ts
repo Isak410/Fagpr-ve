@@ -13,6 +13,8 @@ export async function DELETE(
 ) {
     try {
         const { bookingId } = await params;
+
+        // check if user has rights to perform action
         const session = await getServerSession(authOptions);
         const user = await prisma.user.findUnique({
             where: {
@@ -29,6 +31,8 @@ export async function DELETE(
                 },
             );
         }
+
+        // Delete booking
         await prisma.booking.delete({
             where: {
                 id: parseInt(bookingId),
