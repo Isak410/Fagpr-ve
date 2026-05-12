@@ -5,9 +5,11 @@ import { getServerSession } from 'next-auth';
 export default async function HomeLayout({
     customer,
     employee,
+    children,
 }: {
     customer: React.ReactNode;
     employee: React.ReactNode;
+    children: React.ReactNode;
 }) {
     const session = await getServerSession(authOptions);
     let user;
@@ -23,7 +25,7 @@ export default async function HomeLayout({
             {session && session.user && user ? (
                 <>{user.role == 'EMPLOYEE' ? employee : customer}</>
             ) : (
-                <>Hero Page</>
+                <>{children}</>
             )}
         </div>
     );

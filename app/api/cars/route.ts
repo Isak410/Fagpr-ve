@@ -1,10 +1,28 @@
 import prisma from '@/app/lib/prisma';
+import { authOptions } from '@/app/utils/authOptions';
 import { put } from '@vercel/blob';
 import { randomUUID } from 'crypto';
+import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     try {
+        const session = await getServerSession(authOptions);
+        const user = await prisma.user.findUnique({
+            where: {
+                id: parseInt(session.user.id),
+            },
+        });
+        if (!user || !session || user.role !== 'EMPLOYEE') {
+            return NextResponse.json(
+                {
+                    success: false,
+                },
+                {
+                    status: 401,
+                },
+            );
+        }
         const formData = await req.formData();
 
         const brand = formData.get('brand') as string;
@@ -61,7 +79,7 @@ export async function POST(req: Request) {
             },
             {
                 status: 500,
-            }
+            },
         );
     }
 }

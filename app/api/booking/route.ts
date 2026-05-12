@@ -16,7 +16,16 @@ export async function POST(req: Request) {
         const body = await req.json();
         const session = await getServerSession(authOptions);
         const validation = bookingSchema.safeParse(body);
-
+        if (!session) {
+            return NextResponse.json(
+                {
+                    success: false,
+                },
+                {
+                    status: 401,
+                },
+            );
+        }
         if (!validation.success) {
             return NextResponse.json(
                 {
